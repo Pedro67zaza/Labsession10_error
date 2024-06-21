@@ -1,0 +1,111 @@
+
+/**
+ * Program purpose: To create an arithmetic calculator 
+ *
+ * @author (AFIZUDIN FIRDAUS)
+ * @version (DATE: 21/6/2024)
+ */
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class ArithmeticCalc extends JFrame implements ActionListener
+ 
+{
+   private JLabel lblNum11, lblNum21;
+   private JTextField txtNum11, txtNum21, txtOutput;
+   private JButton btnADD, btnSUB, btnMUL, btnDIV, btnMOD;
+   private FlowLayout layout; 
+   private Container cont;
+    private JPanel pnlNorth, pnlControl;
+   
+   public ArithmeticCalc()
+   {
+       super("Arithmetic Calculator");
+       layout = new FlowLayout();
+       
+       cont = getContentPane();
+       cont.setLayout(layout);
+       
+       lblNum11 = new JLabel("Enter the first number:", SwingConstants.LEFT);
+       lblNum21 = new JLabel("Enter the second number:", SwingConstants.LEFT);
+       
+       txtNum11 = new JTextField(15);
+       txtNum21 = new JTextField(15);
+       txtOutput = new JTextField(35);
+       
+       pnlNorth = new JPanel();
+       pnlNorth.setLayout(new GridLayout(4, 2));
+       pnlControl = new JPanel();
+       pnlControl.setLayout(new GridLayout(1, 2));
+       
+       btnADD = new JButton("+");
+       btnSUB = new JButton("-");
+       btnMUL = new JButton("*");
+       btnDIV = new JButton("/");
+       btnMOD = new JButton("%");
+       
+       pnlNorth.add(lblNum11);
+       pnlNorth.add(txtNum11);
+       pnlNorth.add(lblNum21);
+       pnlNorth.add(txtNum21);
+       pnlNorth.add(txtOutput);
+       pnlControl.add(btnADD);
+       pnlControl.add(btnSUB);
+       pnlControl.add(btnMUL);
+       pnlControl.add(btnDIV);
+        pnlControl.add(btnMOD);
+        
+        cont.add(pnlNorth, "NORTH");
+        cont.add(pnlControl, "SOUTH");
+       
+       btnADD.addActionListener(this);
+       btnSUB.addActionListener(this);
+       btnMUL.addActionListener(this);
+       btnDIV.addActionListener(this);
+       btnMOD.addActionListener(this);
+       
+        setSize(350, 150);
+        setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+   }
+   public void actionPerformed(ActionEvent e)
+   {
+       double num1 = Double.parseDouble(txtNum11.getText());
+       double num2 = Double.parseDouble(txtNum21.getText());
+       
+       if(e.getSource() == btnADD)
+       {
+           double sum = num1 + num2;
+           txtOutput.setText(""+sum);
+       }
+       else if(e.getSource() == btnSUB)
+       {
+           double sum = num1 - num2;
+           txtOutput.setText(""+sum);
+       }
+       else if(e.getSource() == btnMUL)
+       {
+           double sum = num1 * num2;
+           txtOutput.setText(""+sum);
+       }
+       else if(e.getSource() == btnDIV)
+       {
+           double sum = num1 / num2;
+           txtOutput.setText(""+sum);
+       }
+       else if(e.getSource() == btnMOD)
+       {
+           double sum = num1 % num2;
+           txtOutput.setText(""+sum);
+       }
+       else
+           System.exit(0);
+   }
+   
+   public static void main(String[]args)
+   {
+       ArithmeticCalc demo = new ArithmeticCalc();
+   }
+   
+}
